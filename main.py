@@ -7,9 +7,9 @@ app = FastAPI()
 class ProductRequest(BaseModel):
 	product_name: str
 
-@app.post("/retrieve")
-def retrieve_product(data: ProductRequest):
-	result = get_product_price(data.product_name)
+@app.get("/retrieve/{product_name}")
+def retrieve_product(product_name: str):
+	result = get_product_price(product_name)
 	if result:
 		return result
 	return {"message": "Product not found"}
